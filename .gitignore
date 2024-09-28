@@ -1,0 +1,6 @@
+.vscode
+logs
+keys
+postgresdata
+*.key
+*.db

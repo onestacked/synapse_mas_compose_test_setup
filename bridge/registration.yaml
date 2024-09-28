@@ -1,0 +1,15 @@
+id: go-test-bridgev2
+url: http://bridge:8008
+as_token: u0ELxbtF08t2q7KkEjJmNtYGH9VtkYzichqsA6CytOF9arGQRO8pJXwT9iT5FJkn
+hs_token: XnrjdT9dJkr8wIvCANd9mcfrAr8oguxF8tlhjeb4KQvBw12RLz08vQUbRQQcgMsX
+sender_localpart: 3twLnx4ETaqAJfjZtlFm9CcgnERLYCax
+rate_limited: false
+namespaces:
+    users:
+        - regex: ^@go-test-bridgev2bot:dev-matrix\.onestacked\.dev$
+          exclusive: true
+        - regex: ^@go-test-bridgev2_.*:dev-matrix\.onestacked\.dev$
+          exclusive: true
+de.sorunome.msc2409.push_ephemeral: true
+push_ephemeral: true
+io.element.msc4190: true

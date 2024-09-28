@@ -1,0 +1,72 @@
+# Configuration file for Synapse.
+#
+# This is a YAML file: see [1] for a quick introduction. Note in particular
+# that *indentation is important*: all the elements of a list or dictionary
+# should have the same indentation.
+#
+# [1] https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
+#
+# For more information on how to configure Synapse, including a complete accounting of
+# each option, go to docs/usage/configuration/config_documentation.md or
+# https://element-hq.github.io/synapse/latest/usage/configuration/config_documentation.html
+server_name: "dev-matrix.onestacked.dev"
+pid_file: /data/homeserver.pid
+listeners:
+  - port: 8008
+    tls: false
+    type: http
+    x_forwarded: true
+    resources:
+      - names: [client]
+        compress: false
+database:
+  name: psycopg2
+  args:
+    user: synapse_user
+    password: 1234
+    dbname: synapse
+    host: postgres
+    cp_min: 5
+    cp_max: 10
+log_config: "/data/synapse.log.config"
+media_store_path: /data/media_store
+registration_shared_secret: "SNk21gQGYiL2zpoJtr-jvm4He1mOwQpTa#kDjkPdNn42RQGCyh"
+report_stats: false
+macaroon_secret_key: "dIut3PEe58ma#O9h8;8D4Wt6,j#QhzC6ibHw5E-l=Wpc,.uGK6"
+form_secret: "Ll*@*XwwH=wQlmNg7F2zlPvOZ6v;oMLOWmxW2x^mM2C_Fk;eIu"
+signing_key_path: "/data/synapse.signing.key"
+trusted_key_servers:
+  - server_name: "matrix.org"
+federation_domain_whitelist:
+- chat1.example.com
+
+max_event_delay_duration: 600000
+
+app_service_config_files:
+  - /data/bridge-registration.yaml
+  - /data/dp-registration.yaml
+
+experimental_features:
+  msc4133_enabled: true
+  msc4108_enabled: true
+  msc3202_device_masquerading: true
+  msc3861:
+    enabled: true
+
+    # Synapse will call `{issuer}/.well-known/openid-configuration` to get the OIDC configuration
+    issuer: http://mas:8080/
+  
+    # Matches the `client_id` in the auth service config
+    client_id: 0000000000000000000SYNAPSE
+    # Matches the `client_auth_method` in the auth service config
+    client_auth_method: client_secret_basic
+    # Matches the `client_secret` in the auth service config
+    client_secret: "SomeRandomSecret"
+  
+    # Matches the `matrix.secret` in the auth service config
+    admin_token: "AnotherRandomSecret"
+  
+    # URL to advertise to clients where users can self-manage their account
+    account_management_url: "https://dev-auth.onestacked.dev/account"
+
+# vim:ft=yaml

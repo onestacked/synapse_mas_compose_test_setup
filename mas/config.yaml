@@ -1,0 +1,117 @@
+http:
+  listeners:
+  - name: web
+    resources:
+    - name: discovery
+    - name: human
+    - name: oauth
+    - name: compat
+    - name: graphql
+    - name: assets
+    binds:
+    - address: '[::]:8080'
+    proxy_protocol: false
+  - name: internal
+    resources:
+      - name: adminapi
+    binds:
+    - address: '[::]:8081'
+    proxy_protocol: false
+  trusted_proxies:
+  - 192.168.0.0/16
+  - 172.16.0.0/12
+  - 10.0.0.0/10
+  - 127.0.0.1/8
+  - fd00::/8
+  - ::1/128
+  public_base: https://dev-auth.onestacked.dev
+  issuer: https://dev-auth.onestacked.dev
+database:
+  host: postgres
+  username: mas_user
+  password: "1234"
+  database: mas
+  max_connections: 10
+  min_connections: 0
+  connect_timeout: 30
+  idle_timeout: 600
+  max_lifetime: 1800
+email:
+  from: '"Authentication Service" <root@localhost>'
+  reply_to: '"Authentication Service" <root@localhost>'
+  transport: blackhole
+secrets:
+  encryption: a86d112cc726daea869c12a4adc27057257f64004fcdbdf6f264ff6394476ec5
+  keys:
+  - kid: fb0OZJ1cOr
+    key: |
+      -----BEGIN RSA PRIVATE KEY-----
+      MIIEogIBAAKCAQEAtaVbw/c581S07BlX3KyP8xztKdgOpGbiuJeG9AUPPwT953ZS
+      oysv7Rwn11R6ZfGqp0xNLMrcAj74hG2iGX4NjWiZljwSX8SoJfw/AQ5U33lNPYNv
+      rhA1wc1iHx+umOzGW3UpYw1XIp44Kaxv/6RCuW1AvBYkgZ2XvQK7+xcs1W9gTvbn
+      OM2KdkvVl+J+FGpXf1d5dOQ6xFTeDm/tuggxm/iD9FbZH8CUlu/2Uc/Veyho+KPN
+      jEkuKdz4bnn2jazKDs6tjkW2vfQ0ID56HuBlhTptfIKCFowZpGIgsdtYCUA9a/cO
+      5hfmUgTBvE4ZiM9lg7glC5CMSUs2awQ4urXVowIDAQABAoIBAGm/7R63bat2IyZY
+      0sgMRnnY21HDETMxGskwnkauM2QS+eapAg8wc2RtQdygt+llul5Pk5aCO3erRW+D
+      jB2fPzCWNuQ58NCEYwhKRDvPJiY8LnWjcX86vLEpaviHr1QkdI6GNSQPfi0PQ88v
+      Lrz72kStkERv96zmHJLTZrEVmupeQ1VIAjW3WIu2UiWwo4GqQtZndAc5ahzMElab
+      11y1WGcYoebXLt9Mli3fkyMzK/LRUf3Cc2A2LiDEHZ0QugiN+Vd+yVs3kSNKSUjB
+      YRAIIECZ9qHor2Xu1LRmu+Z/bS8UqrRQFNWbaoXS8+aJJ4hUczdwbTgS1fkyoEQ2
+      D0d7q1ECgYEAyQnhwOI0UX2yW0xMbVfn/CsR7plvH2Zs180hxLGCd0IzAcLFmyug
+      Xekb0QGb/a17IykgtJ8vMu9vBTEyEp6esjXoz05NIBDp8vP5BuwrOXDveK+WJIyD
+      eMtatrMk/wxulUWbdLuDpdJBQPT3kfu07bIE4qWGcMCevcStdqNTnf0CgYEA5049
+      LtWkW9qrLcBh7GGmD+iDQT9yyjEqSAS+KHBsW6XPztJFBbXIjH4LUbL6219+8Z/D
+      ZSFD6hXfqaq2gv9i4/HpH5M0bEB0dukF0R+r0SibsSC3zn+sJtFbXPhQ2J150Mbj
+      PJ9aKK9WsBJbtXm53ZQUyVOIrZbeCEjKb5sgxB8CgYB4m3IROmOyw9r9hL+RFZy6
+      HsiqQOh2iQchTBJHI0sm6tMY6lWMatbRoCis8e84eBwYkvLpCVrSjuwmzEXC/+Aq
+      /8aEn/ALHbqMo6sxaPvhgQxZddV4Zcf17uGkG8NFM5sf+Ftz447uKz40jwH7VWtM
+      8nCV3EHUYOqa5GRAeWmPrQKBgAgafZo+cdul9YlMzCFz6lV0V+TZTDQ5NLoBMIhK
+      KAGt9XHRfAmPLM9/OvZJxvAYkGH2runEGJUC3ysah/pe6CAEQZ6RkayZNXtU/pcs
+      /N//BDVYaBgb8PQLMaA4Mtzj53ig/yUIkCgMvIS+n+fjs9dHcNL80jUCrBSuOClg
+      ze0RAoGAZwk2q2jq7/qlMdGNSeqZxSEm9uA/zXl4DongPg1gmNSc6NHJ+jXOXFXY
+      7HgwmzxTbaCw5cs9EMbzBWtncWgi/Jzd0yZCm7enhKMqlRlqvm62wmzhoJ1B17kf
+      GsNmjQnKuW/0HstFCpeguXGRxYkhJ17rG32csxsz2b93rJMyupw=
+      -----END RSA PRIVATE KEY-----
+  - kid: qBTTfc7rkb
+    key: |
+      -----BEGIN EC PRIVATE KEY-----
+      MHcCAQEEIIXCqm5N5IZEmnNM0569oIJymx15Uv6stgXNq4JybD6boAoGCCqGSM49
+      AwEHoUQDQgAEQ2gHpec2qqtn0pi1EN2kFqFg22hfqtgpef010QzJjPFlv6G+w1Na
+      Qk0wGEHv0i6rpLM1rjchyvyLSl2gdtrmuQ==
+      -----END EC PRIVATE KEY-----
+  - kid: VhY5JTZRet
+    key: |
+      -----BEGIN EC PRIVATE KEY-----
+      MIGkAgEBBDAHigSi3LPxfi15GUcgmdlbirf3eTZBdwsoTvXv0l2i01oz34K0jt8y
+      QYG/5Ogl77mgBwYFK4EEACKhZANiAAQ8YQRojHeyRACXy15osPG8Vvq4hVV9pmZQ
+      vDqlam0JMnJeen5b+KcFwe3alxWqfnQs9j5KMA5w+mhpIOGxDCq4L+FRmm7c2fU+
+      wWC/XqSqEMvdVtbw+uBmnzF3kxij5AY=
+      -----END EC PRIVATE KEY-----
+  - kid: CYMiuon5We
+    key: |
+      -----BEGIN EC PRIVATE KEY-----
+      MHQCAQEEIOd1f2hJdtm/2GbkS4kJiOnUiB+VorK50Y3tyCK00OpLoAcGBSuBBAAK
+      oUQDQgAEEDrZxVI+WQfv5VWiXz0FV2upepzXCQ5x4sryeEgoQ6tlfRfVbQWdvGXZ
+      DMX/mMHQMx5J+AcmxT9lJL/3oKuyig==
+      -----END EC PRIVATE KEY-----
+passwords:
+  enabled: true
+  schemes:
+  - version: 1
+    algorithm: argon2id
+  minimum_complexity: 3
+matrix:
+  homeserver: dev-matrix.onestacked.dev
+  secret: "AnotherRandomSecret"
+  endpoint: http://synapse:8008/
+clients:
+  - client_id: 0000000000000000000SYNAPSE
+    client_auth_method: client_secret_basic
+    client_secret: "SomeRandomSecret"
+  - client_id: 01J44Q10GR4AMTFZEEF936DTCM
+    client_auth_method: client_secret_post
+    client_secret: wie9oh2EekeeDeithei9Eipaeh2sohte
+policy:
+  data:
+    admin_clients:
+      - 01J44Q10GR4AMTFZEEF936DTCM
